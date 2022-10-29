@@ -4,7 +4,7 @@ import Float "mo:base/Float";
 import Int "mo:base/Int";
 import Iter "mo:base/Iter";
 
-import StableBuffer "mo:OptStableBuffer/StableBuffer";
+import StableBuffer "mo:StableBuffer/StableBuffer";
 
 module {
     type StableBuffer<Nat> = StableBuffer.StableBuffer<Nat>;
