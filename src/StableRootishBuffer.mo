@@ -21,6 +21,20 @@ module {
         };
     };
 
+    public func initPresized(n : Nat) : RootishBuffer {
+        let blocks_size = get_block_index(n) + 1;
+        let blocks = StableBuffer.initPresized<[var Nat]>(blocks_size);
+
+        for (i in Iter.range(1, blocks_size)) {
+            StableBuffer.add(blocks, Array.init<Nat>(i, 1));
+        };
+
+        {
+            var count = 0;
+            blocks;
+        };
+    };
+
     public func size(self : RootishBuffer) : Nat {
         self.count;
     };
@@ -80,17 +94,14 @@ module {
     };
 
     func grow(self : RootishBuffer) {
-        Debug.print("grow");
         let blocks_size = StableBuffer.size(self.blocks);
         if (capacity(self) - blocks_size < self.count + 1) {
-            Debug.print("growing...");
 
             StableBuffer.add(
                 self.blocks,
                 Array.init<Nat>(blocks_size + 1, 1),
             );
         };
-        Debug.print(debug_show self.blocks);
     };
 
     func shrink(self : RootishBuffer) {
@@ -104,8 +115,6 @@ module {
     };
 
     public func insert(self : RootishBuffer, i : Nat, val : Nat) {
-        Debug.print("insert");
-        Debug.print(debug_show self.blocks);
         grow(self);
         self.count += 1;
 
@@ -122,7 +131,6 @@ module {
     };
 
     public func add(self : RootishBuffer, val : Nat) {
-        Debug.print("add");
         insert(self, self.count, val);
     };
 
@@ -138,7 +146,7 @@ module {
         };
 
         self.count -= 1;
-        shrink(self);
+        // shrink(self);
 
         elem;
     };
