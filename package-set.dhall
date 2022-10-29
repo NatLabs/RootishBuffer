@@ -14,6 +14,12 @@ let additions = [
 		version = "v0.2.0", 
 		repo = "https://github.com/canscale/StableBuffer", 
 		dependencies = [] : List Text
+    },
+	{ 
+		name = "OptStableBuffer", 
+		version = "main", 
+		repo = "https://github.com/NatLabs/StableBuffer", 
+		dependencies = [] : List Text
     }
 ]
 

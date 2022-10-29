@@ -124,7 +124,6 @@ let success = run([
                         StableRootishBuffer.capacity(buffer) == 3,
 
                         StableRootishBuffer.removeLast(buffer) == null,
-
                     ]);
                 },
             ),
